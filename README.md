@@ -1,4 +1,4 @@
-![oAuth-social](https://travis-ci.org/Sergey34/spring-boot-starter-security-oauth-social.svg?branch=master)
+[![Build Status](https://travis-ci.org/Sergey34/spring-boot-starter-security-oauth-social.svg?branch=master)](https://travis-ci.org/Sergey34/spring-boot-starter-security-oauth-social)
 
 # Spring Boot oAuth for social networks
 
