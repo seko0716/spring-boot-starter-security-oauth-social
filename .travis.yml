@@ -1,1 +1,2 @@
-install: ./gradlew.sh clean build
+language: java
+install: gradle build
