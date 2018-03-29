@@ -51,7 +51,7 @@ allprojects {
 Добавить зависимость в Gradle:
 
 ```gradle
-compile('com.github.Sergey34:spring-boot-starter-security-oauth-vkgoogle:0.0.1-RELEASE-SNAPSHOT')
+compile('com.github.Sergey34:spring-boot-starter-security-oauth-social:0.0.1-RELEASE-SNAPSHOT')
 ```
 
 //todo описать конфигурацию application.yml
