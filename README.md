@@ -1,6 +1,6 @@
 # Spring Boot oAuth for social networks
 
-Основная цель проекта [oAuth-vk-google](https://github.com/Sergey34/spring-boot-starter-security-oauth-social) упростить создание приложений, использующих авторизацию через социальные сети такие как Vk или Google.
+Основная цель проекта [oAuth-social](https://github.com/Sergey34/spring-boot-starter-security-oauth-social) упростить создание приложений, использующих авторизацию через социальные сети такие как Vk или Google.
 
 ## Статус ##
 Пре-пре-альфа. 
@@ -43,7 +43,7 @@ allprojects {
 ```xml
 <dependency>
   <groupId>com.github.Sergey34</groupId>
-  <artifactId>spring-boot-starter-security-oauth-vkgoogle</artifactId>
+  <artifactId>spring-boot-starter-security-oauth-social</artifactId>
   <version>${version}.RELEASE</version>
 </dependency>
 ```
