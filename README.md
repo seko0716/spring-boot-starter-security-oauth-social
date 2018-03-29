@@ -1,9 +1,16 @@
 # Spring Boot oAuth for Vk and Google
 
 Основная цель проекта [oAuth-vk-google](https://github.com/Sergey34/spring-boot-starter-security-oauth-vkgoogle) упростить создание приложений, использующих авторизацию через социальные сети такие как Vk или Google.
+
+## Статус ##
+Пре-пре-альфа. 
+
+Работает авторизация через Google и Vk. Конфигурация через замену бинов.
+
+
 ## Особенности ##
 
-* ....
+* Простая конфигурация в application.yml или application.properties для подключения нового сервера авторизации.
 
 ## Быстрый старт ##
 
@@ -48,7 +55,10 @@ compile('com.github.Sergey34:spring-boot-starter-security-oauth-vkgoogle:0.0.1-R
 ```
 
 //todo описать конфигурацию application.yml
+
 //todo описать конфигурацию бинов для расширения
+
+Для авторизации перейти по ссылке /connect/vk или /connect/google
 
 ## Планы развития ##
 
