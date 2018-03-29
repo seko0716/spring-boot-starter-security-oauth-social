@@ -1,0 +1,124 @@
+{
+  "groups": [
+    {
+      "name": "google.client",
+      "type": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty"
+    },
+    {
+      "name": "vk.client",
+      "type": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty"
+    },
+    {
+      "name": "google.resource",
+      "type": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleResourceProperties",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleResourceProperties"
+    },
+    {
+      "name": "vk.resource",
+      "type": "spring.security.oauth2.vkgoogle.configurations.properties.VkResourceProperties",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkResourceProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "google.client.clientId",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "google.client.clientSecret",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "google.client.accessTokenUri",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "google.client.userAuthorizationUri",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "google.client.clientAuthenticationScheme",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "google.client.scope",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "google.resource.userInfoUri",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleResourceProperties",
+      "defaultValue": ""
+    },
+    {
+      "name": "vk.client.clientId",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "vk.client.clientSecret",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "vk.client.accessTokenUri",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "vk.client.userAuthorizationUri",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "vk.client.clientAuthenticationScheme",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "vk.client.authenticationScheme",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "vk.resource.userInfoUri",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkResourceProperties",
+      "defaultValue": ""
+    }
+  ]
+}
