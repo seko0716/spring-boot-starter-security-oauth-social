@@ -1,0 +1,1 @@
+install: ./gradlew.sh clean build
