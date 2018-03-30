@@ -1,4 +1,4 @@
-package com.seko0716.springbootstartersecurityoauthvkgoogle
+package com.seko0716.springbootstartersecurityoauthvkgoogle.mongorepository
 
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct
 class Stopper {
     @PostConstruct
     fun init(): Unit {
-        println("ContextStopper init")
+        println("MongoRepositoryStopper init")
     }
 }
+

@@ -1,4 +1,4 @@
-package com.seko0716.springbootstartersecurityoauthvkgoogle.repository
+package com.seko0716.springbootstartersecurityoauthvkgoogle.jparepository
 
 import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
