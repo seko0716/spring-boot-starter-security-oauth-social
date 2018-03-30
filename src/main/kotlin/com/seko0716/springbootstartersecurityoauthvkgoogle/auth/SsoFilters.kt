@@ -3,6 +3,8 @@ package com.seko0716.springbootstartersecurityoauthvkgoogle.auth
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.AuthoritiesExtractorImpl
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.GooglePrincipalExtractor
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.VkPrincipalExtractor
+import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.GoogleProperties
+import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.VkProperties
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserStorage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
@@ -36,10 +38,10 @@ class SsoFilters {
 
     @Bean
     fun googleFilter(): OAuth2ClientAuthenticationProcessingFilter {
-        val googleFilter = OAuth2ClientAuthenticationProcessingFilter("/connect/google")
-        val googleTemplate = OAuth2RestTemplate(google(), oauth2ClientContext)
+        val googleFilter = OAuth2ClientAuthenticationProcessingFilter(google().loginUrl)
+        val googleTemplate = OAuth2RestTemplate(googleClient(), oauth2ClientContext)
         googleFilter.setRestTemplate(googleTemplate)
-        val tokenServices = UserInfoTokenServices(googleResource().userInfoUri, google().clientId)
+        val tokenServices = UserInfoTokenServices(googleResource().userInfoUri, googleClient().clientId)
         tokenServices.setRestTemplate(googleTemplate)
         tokenServices.setAuthoritiesExtractor(authoritiesExtractor())
         tokenServices.setPrincipalExtractor(googlePrincipalExtractor())
@@ -49,13 +51,13 @@ class SsoFilters {
 
     @Bean
     fun vkFilter(): OAuth2ClientAuthenticationProcessingFilter {
-        val vkFilter = OAuth2ClientAuthenticationProcessingFilter("/connect/vk")
-        val vkTemplate = OAuth2RestTemplate(vk(), oauth2ClientContext)
+        val vkFilter = OAuth2ClientAuthenticationProcessingFilter(vk().loginUrl)
+        val vkTemplate = OAuth2RestTemplate(vkClient(), oauth2ClientContext)
         vkFilter.setRestTemplate(vkTemplate)
         vkTemplate.setAccessTokenProvider(AccessTokenProviderChain(Arrays.asList(
                 tokenProvider(), ImplicitAccessTokenProvider(),
                 ResourceOwnerPasswordAccessTokenProvider(), ClientCredentialsAccessTokenProvider())))
-        val tokenServices = UserInfoTokenServices(vkResource().userInfoUri, vk().clientId)
+        val tokenServices = UserInfoTokenServices(vkResource().userInfoUri, vkClient().clientId)
         tokenServices.setRestTemplate(vkTemplate)
         tokenServices.setTokenType("code")
         tokenServices.setAuthoritiesExtractor(authoritiesExtractor())
@@ -74,7 +76,7 @@ class SsoFilters {
 
     @Bean
     @ConfigurationProperties("google.client")
-    fun google(): AuthorizationCodeResourceDetails {
+    fun googleClient(): AuthorizationCodeResourceDetails {
         return AuthorizationCodeResourceDetails()
     }
 
@@ -85,8 +87,15 @@ class SsoFilters {
     }
 
     @Bean
+    @ConfigurationProperties("google")
+    fun google(): GoogleProperties {
+        return GoogleProperties()
+    }
+
+
+    @Bean
     @ConfigurationProperties("vk.client")
-    fun vk(): AuthorizationCodeResourceDetails {
+    fun vkClient(): AuthorizationCodeResourceDetails {
         return AuthorizationCodeResourceDetails()
     }
 
@@ -94,6 +103,12 @@ class SsoFilters {
     @ConfigurationProperties("vk.resource")
     fun vkResource(): ResourceServerProperties {
         return ResourceServerProperties()
+    }
+
+    @Bean
+    @ConfigurationProperties("vk")
+    fun vk(): VkProperties {
+        return VkProperties()
     }
 
     @Bean

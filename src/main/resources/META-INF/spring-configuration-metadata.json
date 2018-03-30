@@ -1,9 +1,19 @@
 {
   "groups": [
     {
+      "name": "google",
+      "type": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleProperty",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleProperty"
+    },
+    {
       "name": "google.client",
       "type": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
       "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty"
+    },
+    {
+      "name": "vk",
+      "type": "spring.security.oauth2.vkgoogle.configurations.properties.VkProperty",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkProperty"
     },
     {
       "name": "vk.client",
@@ -22,6 +32,13 @@
     }
   ],
   "properties": [
+    {
+      "name": "google.loginUrl",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleProperty",
+      "defaultValue": "/connect/google"
+    },
     {
       "name": "google.client.clientId",
       "type": "java.lang.String",
@@ -70,6 +87,13 @@
       "description": "",
       "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleResourceProperties",
       "defaultValue": ""
+    },
+    {
+      "name": "vk.loginUrl",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkProperty",
+      "defaultValue": "/connect/vk"
     },
     {
       "name": "vk.client.clientId",
