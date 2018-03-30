@@ -1,7 +1,7 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.mongorepository
 
 import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.User
-import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepository
+import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserStorage
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,16 +19,16 @@ import org.springframework.test.context.junit4.SpringRunner
     "com.seko0716.springbootstartersecurityoauthvkgoogle.mongorepository"])
 @ComponentScan(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle"])
 @EntityScan(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle"])
-class TestObjectId {
+class MongoTestObjectId {
 
     @Autowired
-    lateinit var userRepository: UserRepository
+    lateinit var userStorage: UserStorage
 
     @Test
     fun testObjectIdInJpa() {
-        val user = userRepository.save(User(login = "123"))
+        val user = userStorage.save(User(login = "123"))
 
-        val foundedUser = userRepository.findOneByLogin("123")
+        val foundedUser = userStorage.findOneByLogin("123")
         Assert.assertEquals(user, foundedUser)
     }
 }
