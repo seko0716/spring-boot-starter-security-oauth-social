@@ -3,7 +3,7 @@ package com.seko0716.springbootstartersecurityoauthvkgoogle.auth
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.AuthoritiesExtractorImpl
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.GooglePrincipalExtractor
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.VkPrincipalExtractor
-import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepository
+import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserStorage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties
@@ -32,7 +32,7 @@ class SsoFilters {
     @Autowired
     private lateinit var oauth2ClientContext: OAuth2ClientContext
     @Autowired
-    private lateinit var userRepository: UserRepository
+    private lateinit var userRepository: UserStorage
 
     @Bean
     fun googleFilter(): OAuth2ClientAuthenticationProcessingFilter {

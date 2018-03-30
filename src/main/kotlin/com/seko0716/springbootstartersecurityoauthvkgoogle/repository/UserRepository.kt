@@ -1,12 +1,8 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.repository
 
 import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.User
-import org.bson.types.ObjectId
-import org.springframework.data.repository.NoRepositoryBean
-import org.springframework.data.repository.Repository
 
-@NoRepositoryBean
-interface UserRepository : Repository<User, ObjectId> {
+interface UserRepository {
     fun findOneByLogin(login: String): User?
 
     /**

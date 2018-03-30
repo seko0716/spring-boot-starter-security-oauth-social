@@ -2,11 +2,11 @@ package com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors
 
 import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.Role
 import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.User
-import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepository
+import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserStorage
 import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor
 
 //@Component
-class GooglePrincipalExtractor(var userRepository: UserRepository) : PrincipalExtractor {
+class GooglePrincipalExtractor(var userRepository: UserStorage) : PrincipalExtractor {
 
     override fun extractPrincipal(map: MutableMap<String, Any>): Any {
         val result = OAuth2UserService.getDetails(map)
