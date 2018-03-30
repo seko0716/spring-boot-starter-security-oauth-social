@@ -2,6 +2,8 @@
 
 # Spring Boot oAuth for social networks
 
+[![Join the chat at https://gitter.im/spring-boot-starter-security-oauth-social/Lobby](https://badges.gitter.im/spring-boot-starter-security-oauth-social/Lobby.svg)](https://gitter.im/spring-boot-starter-security-oauth-social/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Основная цель проекта [oAuth-social](https://github.com/Sergey34/spring-boot-starter-security-oauth-social) упростить создание приложений, использующих авторизацию через социальные сети такие как Vk или Google.
 
 ## Статус ##
