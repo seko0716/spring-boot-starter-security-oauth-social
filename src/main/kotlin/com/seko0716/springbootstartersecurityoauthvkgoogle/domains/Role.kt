@@ -1,10 +1,14 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.domains
 
+import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.annotations.NoArgs
 import org.bson.types.ObjectId
 import org.springframework.security.core.GrantedAuthority
+import javax.persistence.Entity
+import javax.persistence.Id
 
-
-data class Role(var id: ObjectId = ObjectId(), var name: String) : GrantedAuthority {
+@NoArgs
+@Entity
+data class Role(@Id var id: ObjectId = ObjectId(), var name: String) : GrantedAuthority {
     override fun getAuthority(): String {
         return name
     }
