@@ -1,8 +1,8 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors
 
+import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepository
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
 import org.springframework.security.core.GrantedAuthority
-import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepository
 
 class AuthoritiesExtractorImpl(var userRepository: UserRepository) : AuthoritiesExtractor {
 

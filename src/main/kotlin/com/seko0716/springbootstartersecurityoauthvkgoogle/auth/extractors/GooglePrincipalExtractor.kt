@@ -1,10 +1,9 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors
 
-import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor
 import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.Role
 import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.User
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepository
-import org.springframework.stereotype.Component
+import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor
 
 //@Component
 class GooglePrincipalExtractor(var userRepository: UserRepository) : PrincipalExtractor {

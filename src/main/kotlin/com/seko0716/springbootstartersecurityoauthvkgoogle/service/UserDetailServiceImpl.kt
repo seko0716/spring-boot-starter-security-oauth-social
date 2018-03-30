@@ -1,9 +1,9 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.service
 
+import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
-import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepository
 
 class UserDetailServiceImpl(private var userRepository: UserRepository) : UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails? {

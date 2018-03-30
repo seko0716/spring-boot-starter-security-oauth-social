@@ -1,9 +1,9 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.service
 
 
+import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
-import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.User
 
 class UserDetailImpl(private val user: User) : UserDetails {
 

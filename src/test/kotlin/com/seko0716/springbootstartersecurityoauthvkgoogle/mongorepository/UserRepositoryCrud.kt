@@ -6,9 +6,8 @@ import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserReposi
 import org.bson.types.ObjectId
 import org.springframework.context.annotation.Conditional
 import org.springframework.data.mongodb.repository.MongoRepository
-import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
-//@Repository
-//@Conditional(MissingOtherImplementationCondition::class)
-//interface UserRepositoryCrud : MongoRepository<User, ObjectId>, UserRepository
+@Repository
+@Conditional(MissingOtherImplementationCondition::class)
+interface UserRepositoryCrud : MongoRepository<User, ObjectId>, UserRepository

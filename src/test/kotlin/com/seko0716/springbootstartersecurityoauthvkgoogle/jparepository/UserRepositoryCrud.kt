@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Conditional
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
-//@Repository
-//@Conditional(MissingOtherImplementationCondition::class)
-//interface UserRepositoryCrud : CrudRepository<User, ObjectId>, UserRepository
+@Repository
+@Conditional(MissingOtherImplementationCondition::class)
+interface UserRepositoryCrud : CrudRepository<User, ObjectId>, UserRepository

@@ -14,11 +14,11 @@ class MissingOtherImplementationCondition : Condition {
         val beansOfType: MutableMap<String, UserRepository>?
         try {
             beansOfType = context.beanFactory.getBeansOfType(UserRepository::class.java)
-        }catch (e : BeanCreationException){
+        } catch (e: BeanCreationException) {
             return false
         }
         if (beansOfType.isEmpty() && Hash.CASH.value ||
-                forName.interfaces.contains(UserRepository::class.java) && forName.isInterface){
+                forName.interfaces.contains(UserRepository::class.java) && forName.isInterface) {
             Hash.CASH.value = false
             return true
         }
@@ -28,5 +28,6 @@ class MissingOtherImplementationCondition : Condition {
 
 enum class Hash {
     CASH;
+
     var value: Boolean = true
 }
