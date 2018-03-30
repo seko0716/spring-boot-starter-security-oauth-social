@@ -48,13 +48,18 @@ dependencies {
     compile('org.springframework.boot:spring-boot-autoconfigure')
     compile('org.springframework.data:spring-data-commons')
     compile('org.mongodb:bson:3.5.0')
+
     compileOnly('org.springframework.boot:spring-boot-starter-data-mongodb')
     compileOnly('org.springframework.boot:spring-boot-starter-data-jpa')
-//    compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.1")
 
     compile('org.springframework.boot:spring-boot-starter')
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+
+//    test
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.boot:spring-boot-starter-data-mongodb')
+//    testCompile('org.springframework.boot:spring-boot-starter-data-jpa')
+    testCompile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
 }
