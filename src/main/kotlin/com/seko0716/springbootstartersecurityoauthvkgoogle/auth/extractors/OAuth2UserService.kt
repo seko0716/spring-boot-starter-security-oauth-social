@@ -21,16 +21,25 @@ class OAuth2UserService {
         }
 
         fun getEmail(result: Map<String, String>): String {
-            val email = result["email"]
-            if (email == null) {
-                val firstName = result["first_name"]
-                val lastName = result["last_name"]
-                if (firstName.isNullOrBlank() || lastName.isNullOrBlank()) {
-                    throw IllegalStateException("first_name and last_name is null or blank")
+            val authServiceType = result.getOrDefault("_authServiceType", "ERROR")
+            return when (authServiceType) {
+                "GOOGLE" -> result["email"]!!
+                "VK" -> calculateEmailForVk(result)
+                "ERROR" -> throw IllegalStateException("can not find _authServiceType")
+                else -> {
+                    throw IllegalStateException("can not find _authServiceType")
                 }
-                return result.getOrDefault("email", "$lastName.$firstName@vk_mail.com")
             }
-            return email
+
+        }
+
+        private fun calculateEmailForVk(result: Map<String, String>): String {
+            val firstName = result["first_name"]
+            val lastName = result["last_name"]
+            if (firstName.isNullOrBlank() || lastName.isNullOrBlank()) {
+                throw IllegalStateException("first_name and last_name is null or blank")
+            }
+            return result.getOrDefault("email", "$lastName.$firstName@vk_mail.com")
         }
     }
 }

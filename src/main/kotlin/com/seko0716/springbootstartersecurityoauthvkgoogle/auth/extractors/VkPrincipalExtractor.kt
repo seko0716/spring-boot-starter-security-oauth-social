@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.security.oauth2.resource.Principal
 class VkPrincipalExtractor(var userRepository: UserStorage) : PrincipalExtractor {
 
     override fun extractPrincipal(map: MutableMap<String, Any>): Any {
+        map["_authServiceType"] = "VK"
         val result = OAuth2UserService.getDetails(map)
         val email = result.getOrDefault("email", "default_email")
         var user = userRepository.findOneByLogin(email)
