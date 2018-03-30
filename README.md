@@ -59,9 +59,32 @@ compile('com.github.Sergey34:spring-boot-starter-security-oauth-social:0.0.1-REL
 
 //todo описать конфигурацию application.yml
 
+После этого у вас есть сервис авторизации через Vk и Google. Для авторизации нужно перейти по ссылке **host**/connect/vk или **host**/connect/google.
+
+Пользователь будут перенаправлен на страницу социальной сети для подтвержения доступа.
+
+При дефолтных настройках пользователи не сохраняются в базу. Для добавления этого функцинонала необходимо перепределить класс _UserStorage_ и добавить его бин в контекст:
+
+```kotlin
+@Bean
+fun userStorage(userRepositoryCrud: UserRepositoryJpa): UserStorage {
+    return UserStorageJpa(userRepository = userRepositoryCrud)
+}
+
+class UserStorageJpa constructor(var userRepository: UserRepositoryJpa) : UserStorage() {
+    override fun save(entity: User): User {
+        return userRepository.save(entity)
+    }
+
+    override fun findOneByLogin(login: String): User? {
+        return userRepository.findOneByLogin(login)
+    }
+}
+```
+
 //todo описать конфигурацию бинов для расширения
 
-Для авторизации перейти по ссылке /connect/vk или /connect/google
+
 
 ## Планы развития ##
 
