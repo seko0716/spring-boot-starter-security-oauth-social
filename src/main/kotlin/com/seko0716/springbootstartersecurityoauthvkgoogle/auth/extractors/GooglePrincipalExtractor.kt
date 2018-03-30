@@ -4,7 +4,9 @@ import org.springframework.boot.autoconfigure.security.oauth2.resource.Principal
 import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.Role
 import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.User
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepository
+import org.springframework.stereotype.Component
 
+//@Component
 class GooglePrincipalExtractor(var userRepository: UserRepository) : PrincipalExtractor {
 
     override fun extractPrincipal(map: MutableMap<String, Any>): Any {

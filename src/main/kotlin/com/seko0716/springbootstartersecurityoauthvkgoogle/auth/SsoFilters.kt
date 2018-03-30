@@ -13,8 +13,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
 import org.springframework.security.oauth2.client.OAuth2ClientContext
 import org.springframework.security.oauth2.client.OAuth2RestTemplate
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter
@@ -28,8 +26,6 @@ import org.springframework.security.oauth2.client.token.grant.password.ResourceO
 import java.util.*
 
 @Configuration
-@EnableJpaRepositories(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle.repository"])
-@EnableMongoRepositories(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle.repository"])
 @ComponentScan(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle"])
 class SsoFilters {
 

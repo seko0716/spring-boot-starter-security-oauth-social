@@ -1,7 +1,10 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.security
 
+import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepository
+import com.seko0716.springbootstartersecurityoauthvkgoogle.service.UserDetailServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -12,16 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 import org.springframework.web.filter.CompositeFilter
-import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepository
-import com.seko0716.springbootstartersecurityoauthvkgoogle.service.UserDetailServiceImpl
-import org.springframework.context.annotation.ComponentScan
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
 import javax.servlet.Filter
 
 @Configuration
-@EnableJpaRepositories(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle.repository"])
-@EnableMongoRepositories(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle.repository"])
 @ComponentScan(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle"])
 class Oauth2WebSecurityConfigurerAdapter : WebSecurityConfigurerAdapter() {
     @Autowired
