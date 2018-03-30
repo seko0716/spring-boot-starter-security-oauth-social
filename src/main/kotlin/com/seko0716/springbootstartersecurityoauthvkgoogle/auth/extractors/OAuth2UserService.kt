@@ -21,12 +21,16 @@ class OAuth2UserService {
         }
 
         fun getEmail(result: Map<String, String>): String {
-            val firstName = result["first_name"]
-            val lastName = result["last_name"]
-            if (firstName.isNullOrBlank() || lastName.isNullOrBlank()) {
-                throw IllegalStateException("first_name and last_name is null or blank")
+            val email = result["email"]
+            if (email == null) {
+                val firstName = result["first_name"]
+                val lastName = result["last_name"]
+                if (firstName.isNullOrBlank() || lastName.isNullOrBlank()) {
+                    throw IllegalStateException("first_name and last_name is null or blank")
+                }
+                return result.getOrDefault("email", "$lastName.$firstName@vk_mail.com")
             }
-            return result.getOrDefault("email", "$lastName.$firstName@vk_mail.com")
+            return email
         }
     }
 }
