@@ -57,12 +57,45 @@ allprojects {
 ```gradle
 compile('com.github.Sergey34:spring-boot-starter-security-oauth-social:0.0.1-RELEASE-SNAPSHOT')
 ```
+В файл application.yml или application.properties необходимо указать некоторые данные для авторизации. Эти данные Вы получите при регистрации приложения.
 
-//todo описать конфигурацию application.yml
+[Приложения VK](https://vk.com/apps?act=manage)
+
+Тип риложения: Standalone-приложение, в настройках выставить **Open API: Включён**, указать в поле **Базовый домен** на котором будет развернуто Ваше приложение.
+
+[Приложения Google](https://console.developers.google.com/apis/credentials)
+
+Необходим тип "Идентификатор клиентов OAuth 2.0". После создания приложения в его настройках нужно указать "разрешенные источники JavaScript" и "разрешенные URI перенаправления".
+
+```yml
+google:
+  client:
+    clientId: clientId.apps.googleusercontent.com
+    clientSecret: clientSecret
+    accessTokenUri: https://accounts.google.com/o/oauth2/token
+    userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+    clientAuthenticationScheme: form
+    scope: profile email
+  resource:
+    userInfoUri:  https://www.googleapis.com/oauth2/v3/userinfo
+
+vk:
+  client:
+    clientId: clientId
+    clientSecret: clientSecret
+    accessTokenUri: https://oauth.vk.com/access_token
+    userAuthorizationUri: https://oauth.vk.com/authorize
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri:  https://api.vk.com/method/users.get?v=5.52
+```
 
 После этого у вас есть сервис авторизации через Vk и Google. Для авторизации нужно перейти по ссылке **host**/connect/vk или **host**/connect/google.
 
 Пользователь будут перенаправлен на страницу социальной сети для подтвержения доступа.
+
+## Расширение ##
 
 При дефолтных настройках пользователи сохраняются в базу такими какими были созданы в PrincipalExtracto. Для добавления какого-то функцинонала необходимо перепределить класс _UserStorage_ и добавить его бин в контекст:
 
@@ -82,9 +115,6 @@ class UserStorageJpa constructor(var userRepository: UserRepositoryJpa) : UserSt
     }
 }
 ```
-
-
-## Расширение ##
 
 Чтобы добавить новый сервис авторизации достаточно определить бин **OAuth2ClientAuthenticationProcessingFilter**
 
