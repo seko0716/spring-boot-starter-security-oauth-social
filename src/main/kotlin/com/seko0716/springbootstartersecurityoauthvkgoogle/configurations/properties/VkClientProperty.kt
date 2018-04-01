@@ -9,6 +9,6 @@ data class VkClientProperty(
         var accessTokenUri: String,
         var userAuthorizationUri: String,
         var authenticationScheme: String,
-        var clientAuthenticationScheme: String
-//        ,var scope: String
+        var clientAuthenticationScheme: String,
+        var scope: String
 )

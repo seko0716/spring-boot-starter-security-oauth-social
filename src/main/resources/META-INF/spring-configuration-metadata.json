@@ -42,7 +42,7 @@
     {
       "name": "google.client.clientId",
       "type": "java.lang.String",
-      "description": "",
+      "description": "The identifier of your application.",
       "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
       "defaultValue": ""
     },
@@ -77,7 +77,7 @@
     {
       "name": "google.client.scope",
       "type": "java.lang.String",
-      "description": "",
+      "description": "The bit mask of the application's access settings, which you need to check for authorization and request the missing ones.",
       "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
       "defaultValue": ""
     },
@@ -98,7 +98,7 @@
     {
       "name": "vk.client.clientId",
       "type": "java.lang.String",
-      "description": "",
+      "description": "The identifier of your application.",
       "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
       "defaultValue": ""
     },
@@ -134,6 +134,13 @@
       "name": "vk.client.authenticationScheme",
       "type": "java.lang.String",
       "description": "",
+      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "defaultValue": ""
+    },
+    {
+      "name": "vk.client.scope",
+      "type": "java.lang.String",
+      "description": "The bit mask of the application's access settings, which you need to check for authorization and request the missing ones. Now available: manage, messages, photos, docs.",
       "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
       "defaultValue": ""
     },
