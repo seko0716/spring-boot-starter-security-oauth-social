@@ -1,7 +1,7 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.jparepository
 
 import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.User
-import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserStorage
+import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,7 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner
 class JpaTestObjectId {
 
     @Autowired
-    lateinit var userStorage: UserStorage
+    lateinit var userStorage: IUserStorage
 
     @Test
     fun testObjectIdInJpa() {

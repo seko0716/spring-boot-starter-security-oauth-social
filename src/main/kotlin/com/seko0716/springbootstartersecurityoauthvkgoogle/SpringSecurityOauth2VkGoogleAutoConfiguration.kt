@@ -1,5 +1,7 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle
 
+import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
+import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserRepositoryDefault
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserStorage
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -16,8 +18,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 class SpringSecurityOauth2VkGoogleAutoConfiguration {
 
     @Bean
-    fun userStorage(): UserStorage {
-        return UserStorage()
+    fun userStorage(userRepository: UserRepositoryDefault): IUserStorage {
+        return UserStorage(userRepository)
     }
 
 }

@@ -1,6 +1,6 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.security
 
-import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserStorage
+import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import com.seko0716.springbootstartersecurityoauthvkgoogle.service.UserDetailServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -23,7 +23,7 @@ class Oauth2WebSecurityConfigurerAdapter : WebSecurityConfigurerAdapter() {
     @Autowired
     private lateinit var oAuth2ClientAuthenticationProcessingFilters: List<OAuth2ClientAuthenticationProcessingFilter>
     @Autowired
-    private lateinit var userRepository: UserStorage
+    private lateinit var userRepository: IUserStorage
 
     private fun ssoFilter(): Filter {
         val filter = CompositeFilter()

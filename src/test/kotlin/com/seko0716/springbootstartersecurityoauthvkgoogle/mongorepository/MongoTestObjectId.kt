@@ -1,7 +1,7 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.mongorepository
 
 import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.User
-import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.UserStorage
+import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,13 +16,14 @@ import org.springframework.test.context.junit4.SpringRunner
 @DataMongoTest
 @EnableMongoRepositories(basePackages = [
     "com.seko0716.springbootstartersecurityoauthvkgoogle.repository",
-    "com.seko0716.springbootstartersecurityoauthvkgoogle.mongorepository"])
+    "com.seko0716.springbootstartersecurityoauthvkgoogle.mongorepository"
+])
 @ComponentScan(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle"])
 @EntityScan(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle"])
 class MongoTestObjectId {
 
     @Autowired
-    lateinit var userStorage: UserStorage
+    lateinit var userStorage: IUserStorage
 
     @Test
     fun testObjectIdInJpa() {

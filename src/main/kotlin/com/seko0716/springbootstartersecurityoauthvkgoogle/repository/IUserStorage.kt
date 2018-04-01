@@ -2,7 +2,7 @@ package com.seko0716.springbootstartersecurityoauthvkgoogle.repository
 
 import com.seko0716.springbootstartersecurityoauthvkgoogle.domains.User
 
-interface UserRepository {
+interface IUserStorage {
     fun findOneByLogin(login: String): User?
 
     /**
