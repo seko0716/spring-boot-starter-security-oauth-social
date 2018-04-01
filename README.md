@@ -140,7 +140,7 @@ fun googleFilter(): OAuth2ClientAuthenticationProcessingFilter {
 }
 ```
 
-**GooglePrincipalExtractor** класс конвертирующий отверт сервера в доменную сущность **User**, ее также лучше переопределить:
+**GooglePrincipalExtractor** -- класс конвертирующий отверт сервера в доменную сущность **User**. Его также лучше переопределить:
 
 ```kotlin
 @Bean
