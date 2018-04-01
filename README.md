@@ -23,6 +23,8 @@ betta.
 
 Подключить плагин [JitPack](https://jitpack.io/) для получения jar с GitHub.
 
+Выбрать конкретную ветку или коммит и получить конфиг для зависимости можно [тут](https://jitpack.io/#Sergey34/spring-boot-starter-security-oauth-social).
+
 Maven:
 
 ```xml
