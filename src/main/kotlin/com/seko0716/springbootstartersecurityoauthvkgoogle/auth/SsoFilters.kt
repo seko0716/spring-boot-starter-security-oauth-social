@@ -34,7 +34,7 @@ class SsoFilters {
     @Autowired
     private lateinit var oauth2ClientContext: OAuth2ClientContext
     @Autowired
-    private lateinit var userRepository: IUserStorage
+    private lateinit var userStorage: IUserStorage
 
     @Bean
     fun googleFilter(): OAuth2ClientAuthenticationProcessingFilter {
@@ -118,16 +118,16 @@ class SsoFilters {
 
     @Bean
     fun authoritiesExtractor(): AuthoritiesExtractor {
-        return AuthoritiesExtractorImpl(userRepository = userRepository)
+        return AuthoritiesExtractorImpl(userStorage = userStorage)
     }
 
     @Bean
     fun googlePrincipalExtractor(): GooglePrincipalExtractor {
-        return GooglePrincipalExtractor(userRepository = userRepository)
+        return GooglePrincipalExtractor(userStorage = userStorage)
     }
 
     @Bean
     fun vkPrincipalExtractor(): VkPrincipalExtractor {
-        return VkPrincipalExtractor(userRepository = userRepository)
+        return VkPrincipalExtractor(userStorage = userStorage)
     }
 }

@@ -116,7 +116,7 @@ class UserStorageJpa constructor(var userRepository: UserRepositoryJpa) : UserSt
 }
 ```
 
-Чтобы добавить новый сервис авторизации достаточно определить бин **OAuth2ClientAuthenticationProcessingFilter**
+Чтобы добавить новый сервис авторизации достаточно определить бин **OAuth2ClientAuthenticationProcessingFilter**.
 
 Например бин для авторизации через Google:
 

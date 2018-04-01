@@ -23,7 +23,7 @@ class Oauth2WebSecurityConfigurerAdapter : WebSecurityConfigurerAdapter() {
     @Autowired
     private lateinit var oAuth2ClientAuthenticationProcessingFilters: List<OAuth2ClientAuthenticationProcessingFilter>
     @Autowired
-    private lateinit var userRepository: IUserStorage
+    private lateinit var userStorage: IUserStorage
 
     private fun ssoFilter(): Filter {
         val filter = CompositeFilter()
@@ -34,7 +34,7 @@ class Oauth2WebSecurityConfigurerAdapter : WebSecurityConfigurerAdapter() {
 
     @Bean
     override fun userDetailsService(): UserDetailsService {
-        return UserDetailServiceImpl(userRepository)
+        return UserDetailServiceImpl(userStorage)
     }
 
     @Bean
