@@ -64,7 +64,7 @@ compile('com.github.Sergey34:spring-boot-starter-security-oauth-social:0.0.1-REL
 
 Пользователь будут перенаправлен на страницу социальной сети для подтвержения доступа.
 
-При дефолтных настройках пользователи не сохраняются в базу. Для добавления этого функцинонала необходимо перепределить класс _UserStorage_ и добавить его бин в контекст:
+При дефолтных настройках пользователи сохраняются в базу такими какими были созданы в PrincipalExtracto. Для добавления какого-то функцинонала необходимо перепределить класс _UserStorage_ и добавить его бин в контекст:
 
 ```kotlin
 @Bean
@@ -83,12 +83,57 @@ class UserStorageJpa constructor(var userRepository: UserRepositoryJpa) : UserSt
 }
 ```
 
-//todo описать конфигурацию бинов для расширения
 
+## Расширение ##
 
+Чтобы добавить новый сервис авторизации достаточно определить бин **OAuth2ClientAuthenticationProcessingFilter**
+
+Например бин для авторизации через Google:
+
+```kotlin
+@Bean
+fun googleFilter(): OAuth2ClientAuthenticationProcessingFilter {
+  val googleFilter = OAuth2ClientAuthenticationProcessingFilter(google().loginUrl)
+  val googleTemplate = OAuth2RestTemplate(googleClient(), oauth2ClientContext)
+  googleFilter.setRestTemplate(googleTemplate)
+  val tokenServices = UserInfoTokenServices(googleResource().userInfoUri, googleClient().clientId)
+  tokenServices.setRestTemplate(googleTemplate)
+  tokenServices.setAuthoritiesExtractor(authoritiesExtractor())
+  tokenServices.setPrincipalExtractor(googlePrincipalExtractor())
+  googleFilter.setTokenServices(tokenServices)
+  return googleFilter
+}
+```
+
+**GooglePrincipalExtractor** класс конвертирующий отверт сервера в доменную сущность **User**, ее также лучше переопределить:
+
+```kotlin
+@Bean
+fun googlePrincipalExtractor(userStorage: IUserStorage): PrincipalExtractor {
+    return GooglePrincipalExtractor(userStorage = userStorage)
+}
+
+class GooglePrincipalExtractor(var userStorage: IUserStorage) : PrincipalExtractor {
+
+    override fun extractPrincipal(map: MutableMap<String, Any>): Any {
+        map["_authServiceType"] = "GOOGLE"
+        val result = OAuth2UserService.getDetails(map)
+        val email = result["email"]
+        var user = userStorage.findOneByLogin(email!!)
+        if (user == null) {
+            user = User(login = email, roles = listOf(Role(name = "ROLE_DEFAULT")))
+            return userStorage.save(user)
+        }
+        return user
+    }
+}
+```
+
+Сущностью **User** используется только для авторизации, все дополнительные параметры пользователя в Вашем прокте нужно вынести в отдельную сущность, одним из полей которой будет **User**. Это позволит избежать сложностей при наследовании и использовани реляционныз БД.
+
+Наследование от **User** запрещено, класс помечен как финальный.
 
 ## Планы развития ##
 
-* улучшить конфигурируемость стартера
 * сделать версию для Spring Boot 2
 
