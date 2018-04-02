@@ -25,7 +25,9 @@ betta.
 
 Выбрать конкретную ветку или коммит и получить конфиг для зависимости можно [тут](https://jitpack.io/#Sergey34/spring-boot-starter-security-oauth-social).
 
-Maven:
+### Maven: ###
+
+#### Подключить плагин ####
 
 ```xml
 <repositories>
@@ -36,7 +38,19 @@ Maven:
 </repositories>
 ```
 
-Gradle:
+#### Добавить зависимость: ####
+
+```xml
+<dependency>
+  <groupId>com.github.Sergey34</groupId>
+  <artifactId>spring-boot-starter-security-oauth-social</artifactId>
+  <version>${version}.RELEASE</version>
+</dependency>
+```
+
+Gradle
+
+#### Подключить плагин ####
 
 ```gradle
 allprojects {
@@ -47,17 +61,7 @@ allprojects {
 }
 ```
 
-Добавить зависимость в Maven:
-
-```xml
-<dependency>
-  <groupId>com.github.Sergey34</groupId>
-  <artifactId>spring-boot-starter-security-oauth-social</artifactId>
-  <version>${version}.RELEASE</version>
-</dependency>
-```
-
-Добавить зависимость в Gradle:
+#### Добавить зависимость: ####
 
 ```gradle
 compile('com.github.Sergey34:spring-boot-starter-security-oauth-social:0.0.1-RELEASE-SNAPSHOT')
