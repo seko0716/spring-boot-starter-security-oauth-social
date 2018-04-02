@@ -7,6 +7,8 @@ import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.proper
 import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.VkProperties
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices
@@ -37,6 +39,7 @@ class SsoFilters {
     private lateinit var userStorage: IUserStorage
 
     @Bean
+    @ConditionalOnBean(name = ["googleClient", "googleResource", "google", "authoritiesExtractor"])
     fun googleFilter(): OAuth2ClientAuthenticationProcessingFilter {
         val googleFilter = OAuth2ClientAuthenticationProcessingFilter(google().loginUrl)
         val googleTemplate = OAuth2RestTemplate(googleClient(), oauth2ClientContext)
@@ -50,6 +53,7 @@ class SsoFilters {
     }
 
     @Bean
+    @ConditionalOnBean(name = ["vkClient", "vkResource", "vk", "authoritiesExtractor"])
     fun vkFilter(): OAuth2ClientAuthenticationProcessingFilter {
         val vkFilter = OAuth2ClientAuthenticationProcessingFilter(vk().loginUrl)
         val vkTemplate = OAuth2RestTemplate(vkClient(), oauth2ClientContext)
@@ -76,18 +80,21 @@ class SsoFilters {
 
     @Bean
     @ConfigurationProperties("google.client")
+    @ConditionalOnProperty("google.client")
     fun googleClient(): AuthorizationCodeResourceDetails {
         return AuthorizationCodeResourceDetails()
     }
 
     @Bean
     @ConfigurationProperties("google.resource")
+    @ConditionalOnProperty("google.resource")
     fun googleResource(): ResourceServerProperties {
         return ResourceServerProperties()
     }
 
     @Bean
     @ConfigurationProperties("google")
+    @ConditionalOnProperty("google")
     fun google(): GoogleProperties {
         return GoogleProperties()
     }
@@ -95,18 +102,21 @@ class SsoFilters {
 
     @Bean
     @ConfigurationProperties("vk.client")
+    @ConditionalOnProperty("vk.client")
     fun vkClient(): AuthorizationCodeResourceDetails {
         return AuthorizationCodeResourceDetails()
     }
 
     @Bean
     @ConfigurationProperties("vk.resource")
+    @ConditionalOnProperty("vk.resource")
     fun vkResource(): ResourceServerProperties {
         return ResourceServerProperties()
     }
 
     @Bean
     @ConfigurationProperties("vk")
+    @ConditionalOnProperty("vk")
     fun vk(): VkProperties {
         return VkProperties()
     }
