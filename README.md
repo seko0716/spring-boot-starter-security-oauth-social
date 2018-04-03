@@ -176,5 +176,4 @@ class GooglePrincipalExtractor(var userStorage: IUserStorage) : PrincipalExtract
 
 * сделать версию для Spring Boot 2
 * сделать демо 
-* добавить проверку наличия необходимых пропертей в application файле. если провертей нет валить приложение с корректной ошибке
 
