@@ -21,11 +21,11 @@ apply plugin: 'org.springframework.boot'
 apply plugin: "kotlin-noarg"
 
 noArg {
-    annotation("com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.annotations.NoArgs")
+    annotation("com.seko0716.springboot.starter.oauth2.social.infrostracture.annotations.NoArgs")
 }
 
 group = 'com.seko0716'
-version = '0.1.2-SNAPSHOT'
+version = '0.2.0-SNAPSHOT'
 sourceCompatibility = 1.8
 compileKotlin {
     kotlinOptions {
