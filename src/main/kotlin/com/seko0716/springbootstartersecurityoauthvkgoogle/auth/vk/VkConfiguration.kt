@@ -6,11 +6,11 @@ import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.proper
 import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.properties.VkResourceProperties
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices
 import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -26,6 +26,11 @@ import java.util.*
 
 @Configuration
 @ComponentScan(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle"])
+@EnableConfigurationProperties(value = [
+    VkClientProperty::class,
+    VkProperties::class,
+    VkResourceProperties::class
+])
 class VkConfiguration {
     @Autowired
     private lateinit var userStorage: IUserStorage
@@ -33,7 +38,7 @@ class VkConfiguration {
     private lateinit var oauth2ClientContext: OAuth2ClientContext
 
     @Bean
-    @ConditionalOnBean(VkClientProperty::class, VkResourceProperties::class)
+//    @ConditionalOnBean(VkClientProperty::class, VkResourceProperties::class)
     fun vkFilter(vkResource: VkResourceProperties,
                  vkClient: VkClientProperty,
                  authoritiesExtractor: AuthoritiesExtractor): OAuth2ClientAuthenticationProcessingFilter {

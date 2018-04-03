@@ -1,11 +1,9 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.auth
 
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.AuthoritiesExtractorImpl
-import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.properties.*
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
-import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
@@ -14,14 +12,6 @@ import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilt
 
 @Configuration
 @ComponentScan(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle"])
-@EnableConfigurationProperties(value = [
-    GoogleClientProperty::class,
-    GoogleProperties::class,
-    GoogleResourceProperties::class,
-    VkClientProperty::class,
-    VkProperties::class,
-    VkResourceProperties::class
-])
 class SsoFilters {
 
     @Autowired
