@@ -1,3 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.seko0716.springbootstartersecurityoauthvkgoogle.SpringSecurityOauth2VkGoogleAutoConfiguration,\
   com.seko0716.springbootstartersecurityoauthvkgoogle.auth.SsoFilters,\
-  com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.security.Oauth2WebSecurityConfigurerAdapter
+  com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.security.Oauth2WebSecurityConfigurerAdapter,\
+  com.seko0716.springbootstartersecurityoauthvkgoogle.auth.VkConfiguration,\
+  com.seko0716.springbootstartersecurityoauthvkgoogle.auth.GoogleConfiguration
