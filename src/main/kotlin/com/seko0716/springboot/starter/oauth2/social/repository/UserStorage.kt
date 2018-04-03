@@ -9,8 +9,8 @@ open class UserStorage(private var userRepositoryDefault: UserRepositoryDefault)
         return userRepositoryDefault.save(entity)
     }
 
-    override fun findOneByLogin(login: String): User? {
-        return userRepositoryDefault.findOneByLogin(login)
+    override fun findOneBySocialAccountId(socialAccountId: String): User? {
+        return userRepositoryDefault.findOneBySocialAccountId(socialAccountId)
     }
 
 }

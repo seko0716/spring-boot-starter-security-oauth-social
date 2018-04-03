@@ -1,5 +1,7 @@
 package com.seko0716.springboot.starter.oauth2.social.auth.vk
 
+import com.seko0716.springboot.starter.oauth2.social.auth.extractors.AuthoritiesExtractorImpl
+import com.seko0716.springboot.starter.oauth2.social.auth.extractors.OAuth2UserService
 import com.seko0716.springboot.starter.oauth2.social.auth.extractors.VkPrincipalExtractor
 import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkClientProperty
 import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperties
@@ -42,7 +44,7 @@ class VkConfiguration {
     @Autowired
     private lateinit var oauth2ClientContext: OAuth2ClientContext
     @Autowired
-    private lateinit var authoritiesExtractor: AuthoritiesExtractor
+    lateinit var oAuth2UserService: OAuth2UserService
 
     @Bean
     fun vkFilter(vkResource: VkResourceProperties,
@@ -56,7 +58,7 @@ class VkConfiguration {
         val tokenServices = UserInfoTokenServices(vkResource.userInfoUri, vkClient.clientId)
         tokenServices.setRestTemplate(vkTemplate)
         tokenServices.setTokenType("code")
-        tokenServices.setAuthoritiesExtractor(authoritiesExtractor)
+        tokenServices.setAuthoritiesExtractor(vkAuthoritiesExtractor())
         tokenServices.setPrincipalExtractor(vkPrincipalExtractor())
         vkFilter.setTokenServices(tokenServices)
         return vkFilter
@@ -82,11 +84,16 @@ class VkConfiguration {
 
     @Bean
     fun vkPrincipalExtractor(): VkPrincipalExtractor {
-        return VkPrincipalExtractor(userStorage = userStorage, vk = vk())
+        return VkPrincipalExtractor(userStorage = userStorage, vk = vk(), OAuth2UserService = oAuth2UserService)
     }
 
     @Bean("vkTokenProvider")
     fun vkTokenProvider(): AuthorizationCodeAccessTokenProvider {
         return VkAuthorizationCodeAccessTokenProvider()
+    }
+
+    @Bean
+    fun vkAuthoritiesExtractor(): AuthoritiesExtractor {
+        return AuthoritiesExtractorImpl(userStorage = userStorage, OAuth2UserService = oAuth2UserService, idField = vk().idField)
     }
 }

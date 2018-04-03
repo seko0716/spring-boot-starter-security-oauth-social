@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface UserRepositoryDefault : CrudRepository<User, ObjectId> {
-    fun findOneByLogin(login: String): User?
+    fun findOneBySocialAccountId(socialAccountId: String): User?
 }

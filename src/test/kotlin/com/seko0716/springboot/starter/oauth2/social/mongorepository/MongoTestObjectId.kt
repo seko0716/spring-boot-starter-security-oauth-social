@@ -27,9 +27,9 @@ class MongoTestObjectId {
 
     @Test
     fun testObjectIdInJpa() {
-        val user = userStorage.save(User(login = "123"))
+        val user = userStorage.save(User(login = "123", socialAccountId = "234"))
 
-        val foundedUser = userStorage.findOneByLogin("123")
+        val foundedUser = userStorage.findOneBySocialAccountId("234")
         Assert.assertEquals(user, foundedUser)
     }
 }

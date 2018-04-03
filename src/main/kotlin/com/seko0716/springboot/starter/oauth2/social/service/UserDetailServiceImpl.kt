@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 
 class UserDetailServiceImpl(private var userRepository: IUserStorage) : UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails? {
-        val user = userRepository.findOneByLogin(username)
+        val user = userRepository.findOneBySocialAccountId(username)
         return if (user != null) {
             UserDetailImpl(user)
         } else throw UsernameNotFoundException("Person Not Founded")

@@ -27,9 +27,9 @@ class JpaTestObjectId {
 
     @Test
     fun testObjectIdInJpa() {
-        val user = userStorage.save(User(login = "123"))
+        val user = userStorage.save(User(login = "123", socialAccountId = "34"))
 
-        val foundedUser = userStorage.findOneByLogin("123")
+        val foundedUser = userStorage.findOneBySocialAccountId("34")
         Assert.assertEquals(user, foundedUser)
     }
 }

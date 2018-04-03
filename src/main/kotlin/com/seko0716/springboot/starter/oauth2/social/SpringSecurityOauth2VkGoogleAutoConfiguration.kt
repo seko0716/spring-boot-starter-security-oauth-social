@@ -1,5 +1,6 @@
 package com.seko0716.springboot.starter.oauth2.social
 
+import com.seko0716.springboot.starter.oauth2.social.auth.extractors.OAuth2UserService
 import com.seko0716.springboot.starter.oauth2.social.repository.IUserStorage
 import com.seko0716.springboot.starter.oauth2.social.repository.UserRepositoryDefault
 import com.seko0716.springboot.starter.oauth2.social.repository.UserStorage
@@ -20,6 +21,11 @@ class SpringSecurityOauth2VkGoogleAutoConfiguration {
     @Bean
     fun userStorage(userRepository: UserRepositoryDefault): IUserStorage {
         return UserStorage(userRepository)
+    }
+
+    @Bean
+    fun oAuth2UserService(): OAuth2UserService {
+        return OAuth2UserService()
     }
 
 }

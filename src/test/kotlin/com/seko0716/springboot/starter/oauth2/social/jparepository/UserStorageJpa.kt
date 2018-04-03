@@ -9,7 +9,7 @@ class UserStorageJpa constructor(var userRepository: UserRepositoryJpa) : IUserS
         return userRepository.save(entity)
     }
 
-    override fun findOneByLogin(login: String): User? {
-        return userRepository.findOneByLogin(login)
+    override fun findOneBySocialAccountId(socialAccountId: String): User? {
+        return userRepository.findOneBySocialAccountId(socialAccountId)
     }
 }

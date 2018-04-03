@@ -1,9 +1,7 @@
 package com.seko0716.springboot.starter.oauth2.social.auth
 
-import com.seko0716.springboot.starter.oauth2.social.auth.extractors.AuthoritiesExtractorImpl
 import com.seko0716.springboot.starter.oauth2.social.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
@@ -23,11 +21,6 @@ class SsoFilters {
         registration.filter = filter
         registration.order = -100
         return registration
-    }
-
-    @Bean
-    fun authoritiesExtractor(): AuthoritiesExtractor {
-        return AuthoritiesExtractorImpl(userStorage = userStorage)
     }
 
 

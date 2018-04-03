@@ -6,16 +6,20 @@ import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.V
 import com.seko0716.springboot.starter.oauth2.social.repository.IUserStorage
 import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor
 
-class VkPrincipalExtractor(var userStorage: IUserStorage, var vk: VkProperties) : PrincipalExtractor {
+class VkPrincipalExtractor(var userStorage: IUserStorage, var vk: VkProperties, var OAuth2UserService: OAuth2UserService) : PrincipalExtractor {
     private val authServiceType = "VK"
 
     override fun extractPrincipal(map: MutableMap<String, Any>): Any {
         map["_authServiceType"] = authServiceType
         val result = OAuth2UserService.getDetails(map)
-        val email = result.getOrDefault("email", "default_email")
-        var user = userStorage.findOneByLogin(email)
+        val socialAccountId = result[vk.idField]
+        var user = userStorage.findOneBySocialAccountId(socialAccountId!!)
         if (user == null) {
-            user = User(login = email, roles = vk.defaultRoles.map { Role(name = it) }, authServiceType = authServiceType)
+            user = User(login = result[vk.loginField]!!,
+                    socialAccountId = socialAccountId,
+                    email = result[vk.emailField],
+                    roles = vk.defaultRoles.map { Role(name = it) },
+                    authServiceType = authServiceType)
             return userStorage.save(user)
         }
         return user

@@ -1,6 +1,8 @@
 package com.seko0716.springboot.starter.oauth2.social.auth.google
 
+import com.seko0716.springboot.starter.oauth2.social.auth.extractors.AuthoritiesExtractorImpl
 import com.seko0716.springboot.starter.oauth2.social.auth.extractors.GooglePrincipalExtractor
+import com.seko0716.springboot.starter.oauth2.social.auth.extractors.OAuth2UserService
 import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleClientProperty
 import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperties
 import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleResourceProperties
@@ -35,7 +37,7 @@ class GoogleConfiguration {
     @Autowired
     private lateinit var oauth2ClientContext: OAuth2ClientContext
     @Autowired
-    private lateinit var authoritiesExtractor: AuthoritiesExtractor
+    lateinit var oAuth2UserService: OAuth2UserService
 
     @Bean
     fun googleFilter(googleResource: GoogleResourceProperties,
@@ -45,7 +47,7 @@ class GoogleConfiguration {
         googleFilter.setRestTemplate(googleTemplate)
         val tokenServices = UserInfoTokenServices(googleResource.userInfoUri, googleClient.clientId)
         tokenServices.setRestTemplate(googleTemplate)
-        tokenServices.setAuthoritiesExtractor(authoritiesExtractor)
+        tokenServices.setAuthoritiesExtractor(googleAuthoritiesExtractor())
         tokenServices.setPrincipalExtractor(googlePrincipalExtractor())
         googleFilter.setTokenServices(tokenServices)
         return googleFilter
@@ -71,7 +73,12 @@ class GoogleConfiguration {
 
     @Bean("googlePrincipalExtractor")
     fun googlePrincipalExtractor(): GooglePrincipalExtractor {
-        return GooglePrincipalExtractor(userStorage = userStorage, google = google())
+        return GooglePrincipalExtractor(userStorage = userStorage, google = google(), OAuth2UserService = oAuth2UserService)
+    }
+
+    @Bean
+    fun googleAuthoritiesExtractor(): AuthoritiesExtractor {
+        return AuthoritiesExtractorImpl(userStorage = userStorage, OAuth2UserService = oAuth2UserService, idField = google().idField)
     }
 
 
