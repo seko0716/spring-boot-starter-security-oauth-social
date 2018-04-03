@@ -29,15 +29,15 @@ import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticat
 class GoogleConfiguration {
     @Autowired
     private lateinit var userStorage: IUserStorage
-
     @Autowired
     private lateinit var oauth2ClientContext: OAuth2ClientContext
+    @Autowired
+    private lateinit var authoritiesExtractor: AuthoritiesExtractor
 
     @Bean
     @ConditionalOnBean(GoogleClientProperty::class, GoogleResourceProperties::class)
     fun googleFilter(googleResource: GoogleResourceProperties,
-                     googleClient: GoogleClientProperty,
-                     authoritiesExtractor: AuthoritiesExtractor): OAuth2ClientAuthenticationProcessingFilter {
+                     googleClient: GoogleClientProperty): OAuth2ClientAuthenticationProcessingFilter {
         val googleFilter = OAuth2ClientAuthenticationProcessingFilter(google().loginUrl)
         val googleTemplate = OAuth2RestTemplate(googleClient, oauth2ClientContext)
         googleFilter.setRestTemplate(googleTemplate)

@@ -6,6 +6,7 @@ import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.proper
 import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.properties.VkResourceProperties
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices
@@ -36,12 +37,13 @@ class VkConfiguration {
     private lateinit var userStorage: IUserStorage
     @Autowired
     private lateinit var oauth2ClientContext: OAuth2ClientContext
+    @Autowired
+    private lateinit var authoritiesExtractor: AuthoritiesExtractor
 
     @Bean
-//    @ConditionalOnBean(VkClientProperty::class, VkResourceProperties::class)
+    @ConditionalOnBean(VkClientProperty::class, VkResourceProperties::class)
     fun vkFilter(vkResource: VkResourceProperties,
-                 vkClient: VkClientProperty,
-                 authoritiesExtractor: AuthoritiesExtractor): OAuth2ClientAuthenticationProcessingFilter {
+                 vkClient: VkClientProperty): OAuth2ClientAuthenticationProcessingFilter {
         val vkFilter = OAuth2ClientAuthenticationProcessingFilter(vk().loginUrl)
         val vkTemplate = OAuth2RestTemplate(vkClient, oauth2ClientContext)
         vkFilter.setRestTemplate(vkTemplate)
