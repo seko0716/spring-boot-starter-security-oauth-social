@@ -21,7 +21,7 @@ import javax.servlet.Filter
 @ComponentScan(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle"])
 class Oauth2WebSecurityConfigurerAdapter : WebSecurityConfigurerAdapter() {
     @Autowired(required = false)
-    private var oAuth2ClientAuthenticationProcessingFilters: List<OAuth2ClientAuthenticationProcessingFilter> = listOf()
+    var oAuth2ClientAuthenticationProcessingFilters: List<OAuth2ClientAuthenticationProcessingFilter> = listOf()
     @Autowired
     private lateinit var userStorage: IUserStorage
 
