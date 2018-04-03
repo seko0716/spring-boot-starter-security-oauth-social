@@ -1,6 +1,6 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle
 
-import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.security.Oauth2WebSecurityConfigurerAdapter
+import com.seko0716.springbootstartersecurityoauthvkgoogle.security.Oauth2WebSecurityConfigurerAdapter
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith

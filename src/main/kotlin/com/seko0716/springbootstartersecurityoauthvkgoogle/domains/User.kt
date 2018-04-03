@@ -1,6 +1,6 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.domains
 
-import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.annotations.NoArgs
+import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.annotations.NoArgs
 import org.bson.types.ObjectId
 import javax.persistence.Entity
 import javax.persistence.Id

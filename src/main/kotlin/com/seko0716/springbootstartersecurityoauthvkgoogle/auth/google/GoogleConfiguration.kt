@@ -1,9 +1,9 @@
-package com.seko0716.springbootstartersecurityoauthvkgoogle.auth
+package com.seko0716.springbootstartersecurityoauthvkgoogle.auth.google
 
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.GooglePrincipalExtractor
-import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.GoogleClientProperty
-import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.GoogleProperties
-import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.GoogleResourceProperties
+import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.properties.GoogleClientProperty
+import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.properties.GoogleProperties
+import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.properties.GoogleResourceProperties
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
@@ -19,7 +19,7 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter
 
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle"])
 class GoogleConfiguration {
     @Autowired
     private lateinit var userStorage: IUserStorage

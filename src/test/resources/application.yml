@@ -1,14 +1,14 @@
-google:
-  loginUrl: /google
-  client:
-    clientId: clientId.apps.googleusercontent.com
-    clientSecret: clientSecret
-    accessTokenUri: https://accounts.google.com/o/oauth2/token
-    userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
-    clientAuthenticationScheme: form
-    scope: profile email
-  resource:
-    userInfoUri:  https://www.googleapis.com/oauth2/v3/userinfo
+#google:
+#  loginUrl: /google
+#  client:
+#    clientId: clientId.apps.googleusercontent.com
+#    clientSecret: clientSecret
+#    accessTokenUri: https://accounts.google.com/o/oauth2/token
+#    userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+#    clientAuthenticationScheme: form
+#    scope: profile email
+#  resource:
+#    userInfoUri:  https://www.googleapis.com/oauth2/v3/userinfo
 
 vk:
   loginUrl: /vk

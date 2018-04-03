@@ -1,4 +1,4 @@
-package com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.security
+package com.seko0716.springbootstartersecurityoauthvkgoogle.security
 
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import com.seko0716.springbootstartersecurityoauthvkgoogle.service.UserDetailServiceImpl

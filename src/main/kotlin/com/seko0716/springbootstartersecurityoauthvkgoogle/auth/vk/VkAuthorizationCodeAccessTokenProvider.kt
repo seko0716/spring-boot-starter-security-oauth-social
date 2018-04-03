@@ -1,4 +1,4 @@
-package com.seko0716.springbootstartersecurityoauthvkgoogle.auth
+package com.seko0716.springbootstartersecurityoauthvkgoogle.auth.vk
 
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeAccessTokenProvider
