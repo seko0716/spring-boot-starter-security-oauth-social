@@ -7,4 +7,4 @@ data class GoogleProperties(var loginUrl: String = "/connect/google",
                             var defaultRoles: List<String> = listOf("DEFAULT_ROLE"),
                             var loginField: String = "email",
                             var emailField: String = "email",
-                            val idField: String = "id")
+                            val idField: String = "sub")

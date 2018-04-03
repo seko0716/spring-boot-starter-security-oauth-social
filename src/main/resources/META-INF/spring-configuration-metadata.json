@@ -40,6 +40,27 @@
       "defaultValue": "/connect/google"
     },
     {
+      "name": "google.loginField",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperty",
+      "defaultValue": "email"
+    },
+    {
+      "name": "google.emailField",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperty",
+      "defaultValue": "email"
+    },
+    {
+      "name": "google.idField",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperty",
+      "defaultValue": "sub"
+    },
+    {
       "name": "google.defaultRoles",
       "type": "java.util.List<java.lang.String>",
       "description": "",
@@ -101,6 +122,27 @@
       "description": "",
       "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperty",
       "defaultValue": "/connect/vk"
+    },
+    {
+      "name": "vk.loginField",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperty",
+      "defaultValue": "first_name"
+    },
+    {
+      "name": "vk.emailField",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperty",
+      "defaultValue": "email"
+    },
+    {
+      "name": "vk.idField",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperty",
+      "defaultValue": "id"
     },
     {
       "name": "vk.defaultRoles",

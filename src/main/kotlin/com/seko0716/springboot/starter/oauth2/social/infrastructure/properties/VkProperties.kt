@@ -5,6 +5,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 @ConfigurationProperties(prefix = "vk")
 data class VkProperties(var loginUrl: String = "/connect/vk",
                         var defaultRoles: List<String> = listOf("DEFAULT_ROLE"),
-                        var loginField: String = "email",
+                        var loginField: String = "first_name",
                         var emailField: String = "email",
                         val idField: String = "id")

@@ -12,12 +12,12 @@ class GooglePrincipalExtractor(var userStorage: IUserStorage, var google: Google
     override fun extractPrincipal(map: MutableMap<String, Any>): Any {
         map["_authServiceType"] = authServiceType
         val result = OAuth2UserService.getDetails(map)
-        val socialAccountId = result["id"]
+        val socialAccountId = result[google.idField]
         var user = userStorage.findOneBySocialAccountId(socialAccountId!!)
         if (user == null) {
-            user = User(login = result.getOrDefault("email", ""),
+            user = User(login = result[google.loginField]!!,
                     socialAccountId = socialAccountId,
-                    email = result.getOrDefault("email", ""),
+                    email = result[google.emailField],
                     roles = google.defaultRoles.map { Role(name = it) },
                     authServiceType = authServiceType)
             return userStorage.save(user)
