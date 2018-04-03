@@ -3,8 +3,7 @@ package com.seko0716.springbootstartersecurityoauthvkgoogle.auth
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.AuthoritiesExtractorImpl
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.GooglePrincipalExtractor
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.VkPrincipalExtractor
-import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.GoogleProperties
-import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.VkProperties
+import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.*
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
@@ -13,6 +12,7 @@ import org.springframework.boot.autoconfigure.security.oauth2.resource.Authoriti
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices
 import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
@@ -31,6 +31,12 @@ import java.util.*
 
 @Configuration
 @ComponentScan(basePackages = ["com.seko0716.springbootstartersecurityoauthvkgoogle"])
+@EnableConfigurationProperties(value = [GoogleClientProperty::class,
+    GoogleProperties::class,
+    GoogleResourceProperties::class,
+    VkClientProperty::class,
+    VkProperties::class,
+    VkResourceProperties::class])
 class SsoFilters {
 
     @Autowired

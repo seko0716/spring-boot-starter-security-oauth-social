@@ -1,4 +1,21 @@
-spring:
-  data:
-    mongodb:
-      port: 0
+google:
+  client:
+    clientId: clientId.apps.googleusercontent.com
+    clientSecret: clientSecret
+    accessTokenUri: https://accounts.google.com/o/oauth2/token
+    userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+    clientAuthenticationScheme: form
+    scope: profile email
+  resource:
+    userInfoUri:  https://www.googleapis.com/oauth2/v3/userinfo
+
+vk:
+  client:
+    clientId: clientId
+    clientSecret: clientSecret
+    accessTokenUri: https://oauth.vk.com/access_token
+    userAuthorizationUri: https://oauth.vk.com/authorize
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri:  https://api.vk.com/method/users.get?v=5.52
