@@ -6,7 +6,6 @@ import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.proper
 import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.properties.GoogleResourceProperties
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices
@@ -26,6 +25,10 @@ import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticat
     GoogleProperties::class,
     GoogleResourceProperties::class
 ])
+@ConditionalOnProperty(prefix = "google", name = [
+    "client.clientId", "client.clientSecret", "client.accessTokenUri", "client.userAuthorizationUri",
+    "client.clientAuthenticationScheme", "client.scope", "resource.userInfoUri"
+])
 class GoogleConfiguration {
     @Autowired
     private lateinit var userStorage: IUserStorage
@@ -35,7 +38,6 @@ class GoogleConfiguration {
     private lateinit var authoritiesExtractor: AuthoritiesExtractor
 
     @Bean
-    @ConditionalOnBean(GoogleClientProperty::class, GoogleResourceProperties::class)
     fun googleFilter(googleResource: GoogleResourceProperties,
                      googleClient: GoogleClientProperty): OAuth2ClientAuthenticationProcessingFilter {
         val googleFilter = OAuth2ClientAuthenticationProcessingFilter(google().loginUrl)
@@ -51,17 +53,12 @@ class GoogleConfiguration {
 
     @Bean("googleClient")
     @ConfigurationProperties("google.client")
-    @ConditionalOnProperty(prefix = "google.client", name = [
-        "clientId", "clientSecret", "accessTokenUri", "userAuthorizationUri",
-        "clientAuthenticationScheme", "scope"
-    ])
     fun googleClient(): GoogleClientProperty {
         return GoogleClientProperty()
     }
 
     @Bean("googleResource")
     @ConfigurationProperties("google.resource")
-    @ConditionalOnProperty(prefix = "google.resource", name = ["userInfoUri"])
     fun googleResource(): GoogleResourceProperties {
         return GoogleResourceProperties()
     }

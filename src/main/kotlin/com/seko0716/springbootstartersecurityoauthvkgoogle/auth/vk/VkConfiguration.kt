@@ -6,7 +6,6 @@ import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.proper
 import com.seko0716.springbootstartersecurityoauthvkgoogle.infrostracture.properties.VkResourceProperties
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices
@@ -32,6 +31,11 @@ import java.util.*
     VkProperties::class,
     VkResourceProperties::class
 ])
+
+@ConditionalOnProperty(prefix = "vk", name = [
+    "client.clientId", "client.clientSecret", "client.accessTokenUri", "client.userAuthorizationUri",
+    "client.authenticationScheme", "client.clientAuthenticationScheme", "client.scope", "resource.userInfoUri"
+])
 class VkConfiguration {
     @Autowired
     private lateinit var userStorage: IUserStorage
@@ -41,7 +45,6 @@ class VkConfiguration {
     private lateinit var authoritiesExtractor: AuthoritiesExtractor
 
     @Bean
-    @ConditionalOnBean(VkClientProperty::class, VkResourceProperties::class)
     fun vkFilter(vkResource: VkResourceProperties,
                  vkClient: VkClientProperty): OAuth2ClientAuthenticationProcessingFilter {
         val vkFilter = OAuth2ClientAuthenticationProcessingFilter(vk().loginUrl)
@@ -61,17 +64,12 @@ class VkConfiguration {
 
     @Bean("vkClient")
     @ConfigurationProperties("vk.client")
-    @ConditionalOnProperty(prefix = "vk.client", name = [
-        "clientId", "clientSecret", "accessTokenUri", "userAuthorizationUri",
-        "authenticationScheme", "clientAuthenticationScheme", "scope"
-    ])
     fun vkClient(): VkClientProperty {
         return VkClientProperty()
     }
 
     @Bean("vkResource")
     @ConfigurationProperties("vk.resource")
-    @ConditionalOnProperty(prefix = "vk.resource", name = ["userInfoUri"])
     fun vkResource(): VkResourceProperties {
         return VkResourceProperties()
     }
@@ -91,6 +89,4 @@ class VkConfiguration {
     fun vkTokenProvider(): AuthorizationCodeAccessTokenProvider {
         return VkAuthorizationCodeAccessTokenProvider()
     }
-
-
 }
