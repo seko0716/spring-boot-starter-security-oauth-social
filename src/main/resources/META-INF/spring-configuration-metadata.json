@@ -2,33 +2,33 @@
   "groups": [
     {
       "name": "google",
-      "type": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleProperty",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleProperty"
+      "type": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperty"
     },
     {
       "name": "google.client",
-      "type": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty"
+      "type": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleClientProperty"
     },
     {
       "name": "vk",
-      "type": "spring.security.oauth2.vkgoogle.configurations.properties.VkProperty",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkProperty"
+      "type": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperty"
     },
     {
       "name": "vk.client",
-      "type": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty"
+      "type": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkClientProperty"
     },
     {
       "name": "google.resource",
-      "type": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleResourceProperties",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleResourceProperties"
+      "type": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleResourceProperties",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleResourceProperties"
     },
     {
       "name": "vk.resource",
-      "type": "spring.security.oauth2.vkgoogle.configurations.properties.VkResourceProperties",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkResourceProperties"
+      "type": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkResourceProperties",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkResourceProperties"
     }
   ],
   "properties": [
@@ -36,119 +36,133 @@
       "name": "google.loginUrl",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperty",
       "defaultValue": "/connect/google"
+    },
+    {
+      "name": "google.defaultRoles",
+      "type": "java.util.List<java.lang.String>",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperty",
+      "defaultValue": "DEFAULT_ROLE"
     },
     {
       "name": "google.client.clientId",
       "type": "java.lang.String",
       "description": "The identifier of your application.",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleClientProperty",
       "defaultValue": ""
     },
     {
       "name": "google.client.clientSecret",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleClientProperty",
       "defaultValue": ""
     },
     {
       "name": "google.client.accessTokenUri",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleClientProperty",
       "defaultValue": ""
     },
     {
       "name": "google.client.userAuthorizationUri",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleClientProperty",
       "defaultValue": ""
     },
     {
       "name": "google.client.clientAuthenticationScheme",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleClientProperty",
       "defaultValue": ""
     },
     {
       "name": "google.client.scope",
       "type": "java.lang.String",
       "description": "The bit mask of the application's access settings, which you need to check for authorization and request the missing ones.",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleClientProperty",
       "defaultValue": ""
     },
     {
       "name": "google.resource.userInfoUri",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.GoogleResourceProperties",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleResourceProperties",
       "defaultValue": ""
     },
     {
       "name": "vk.loginUrl",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperty",
       "defaultValue": "/connect/vk"
+    },
+    {
+      "name": "vk.defaultRoles",
+      "type": "java.util.List<java.lang.String>",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperty",
+      "defaultValue": "DEFAULT_ROLE"
     },
     {
       "name": "vk.client.clientId",
       "type": "java.lang.String",
       "description": "The identifier of your application.",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkClientProperty",
       "defaultValue": ""
     },
     {
       "name": "vk.client.clientSecret",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkClientProperty",
       "defaultValue": ""
     },
     {
       "name": "vk.client.accessTokenUri",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkClientProperty",
       "defaultValue": ""
     },
     {
       "name": "vk.client.userAuthorizationUri",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkClientProperty",
       "defaultValue": ""
     },
     {
       "name": "vk.client.clientAuthenticationScheme",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkClientProperty",
       "defaultValue": ""
     },
     {
       "name": "vk.client.authenticationScheme",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkClientProperty",
       "defaultValue": ""
     },
     {
       "name": "vk.client.scope",
       "type": "java.lang.String",
       "description": "The bit mask of the application's access settings, which you need to check for authorization and request the missing ones. Now available: manage, messages, photos, docs.",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkClientProperty",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkClientProperty",
       "defaultValue": ""
     },
     {
       "name": "vk.resource.userInfoUri",
       "type": "java.lang.String",
       "description": "",
-      "sourceType": "spring.security.oauth2.vkgoogle.configurations.properties.VkResourceProperties",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkResourceProperties",
       "defaultValue": ""
     }
   ]

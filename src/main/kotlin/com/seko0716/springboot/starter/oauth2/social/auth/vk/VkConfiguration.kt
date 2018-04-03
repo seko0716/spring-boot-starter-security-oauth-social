@@ -1,9 +1,9 @@
 package com.seko0716.springboot.starter.oauth2.social.auth.vk
 
 import com.seko0716.springboot.starter.oauth2.social.auth.extractors.VkPrincipalExtractor
-import com.seko0716.springboot.starter.oauth2.social.infrostracture.properties.VkClientProperty
-import com.seko0716.springboot.starter.oauth2.social.infrostracture.properties.VkProperties
-import com.seko0716.springboot.starter.oauth2.social.infrostracture.properties.VkResourceProperties
+import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkClientProperty
+import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperties
+import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkResourceProperties
 import com.seko0716.springboot.starter.oauth2.social.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
@@ -82,7 +82,7 @@ class VkConfiguration {
 
     @Bean
     fun vkPrincipalExtractor(): VkPrincipalExtractor {
-        return VkPrincipalExtractor(userStorage = userStorage)
+        return VkPrincipalExtractor(userStorage = userStorage, vk = vk())
     }
 
     @Bean("vkTokenProvider")

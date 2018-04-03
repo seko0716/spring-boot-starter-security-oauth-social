@@ -1,5 +1,6 @@
 google:
-  loginUrl: /google
+  loginUrl: /google/
+  defaultRoles: DEFAULT_ROLE
   client:
     clientId: clientId.apps.googleusercontent.com
     clientSecret: clientSecret
@@ -12,6 +13,7 @@ google:
 
 vk:
   loginUrl: /vk
+  defaultRoles: DEFAULT_ROLE
   client:
     clientId: clientId
     clientSecret: clientSecret
@@ -19,6 +21,6 @@ vk:
     userAuthorizationUri: https://oauth.vk.com/authorize
     authenticationScheme: query
     clientAuthenticationScheme: form
-    scope: manage
+    scope: email
   resource:
     userInfoUri:  https://api.vk.com/method/users.get?v=5.52

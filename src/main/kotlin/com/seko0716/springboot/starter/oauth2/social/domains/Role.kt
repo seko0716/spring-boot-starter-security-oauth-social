@@ -1,6 +1,6 @@
 package com.seko0716.springboot.starter.oauth2.social.domains
 
-import com.seko0716.springboot.starter.oauth2.social.infrostracture.annotations.NoArgs
+import com.seko0716.springboot.starter.oauth2.social.infrastructure.annotations.NoArgs
 import org.bson.types.ObjectId
 import org.springframework.security.core.GrantedAuthority
 import javax.persistence.Entity

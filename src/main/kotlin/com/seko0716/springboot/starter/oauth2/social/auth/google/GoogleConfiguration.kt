@@ -1,9 +1,9 @@
 package com.seko0716.springboot.starter.oauth2.social.auth.google
 
 import com.seko0716.springboot.starter.oauth2.social.auth.extractors.GooglePrincipalExtractor
-import com.seko0716.springboot.starter.oauth2.social.infrostracture.properties.GoogleClientProperty
-import com.seko0716.springboot.starter.oauth2.social.infrostracture.properties.GoogleProperties
-import com.seko0716.springboot.starter.oauth2.social.infrostracture.properties.GoogleResourceProperties
+import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleClientProperty
+import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperties
+import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleResourceProperties
 import com.seko0716.springboot.starter.oauth2.social.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
@@ -71,7 +71,7 @@ class GoogleConfiguration {
 
     @Bean("googlePrincipalExtractor")
     fun googlePrincipalExtractor(): GooglePrincipalExtractor {
-        return GooglePrincipalExtractor(userStorage = userStorage)
+        return GooglePrincipalExtractor(userStorage = userStorage, google = google())
     }
 
 
