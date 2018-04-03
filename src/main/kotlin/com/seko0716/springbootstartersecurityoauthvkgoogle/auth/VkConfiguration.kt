@@ -1,13 +1,14 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.auth
 
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.VkPrincipalExtractor
+import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.VkClientProperty
 import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.VkProperties
+import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.VkResourceProperties
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
-import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -19,7 +20,6 @@ import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticat
 import org.springframework.security.oauth2.client.token.AccessTokenProviderChain
 import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsAccessTokenProvider
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeAccessTokenProvider
-import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails
 import org.springframework.security.oauth2.client.token.grant.implicit.ImplicitAccessTokenProvider
 import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordAccessTokenProvider
 import java.util.*
@@ -33,9 +33,9 @@ class VkConfiguration {
     private lateinit var oauth2ClientContext: OAuth2ClientContext
 
     @Bean
-    @ConditionalOnBean(name = ["vkClient", "vkResource", "authoritiesExtractor"])
-    fun vkFilter(vkResource: ResourceServerProperties,
-                 vkClient: AuthorizationCodeResourceDetails,
+    @ConditionalOnBean(VkClientProperty::class, VkResourceProperties::class)
+    fun vkFilter(vkResource: VkResourceProperties,
+                 vkClient: VkClientProperty,
                  authoritiesExtractor: AuthoritiesExtractor): OAuth2ClientAuthenticationProcessingFilter {
         val vkFilter = OAuth2ClientAuthenticationProcessingFilter(vk().loginUrl)
         val vkTemplate = OAuth2RestTemplate(vkClient, oauth2ClientContext)
@@ -58,15 +58,15 @@ class VkConfiguration {
         "clientId", "clientSecret", "accessTokenUri", "userAuthorizationUri",
         "authenticationScheme", "clientAuthenticationScheme", "scope"
     ])
-    fun vkClient(): AuthorizationCodeResourceDetails {
-        return AuthorizationCodeResourceDetails()
+    fun vkClient(): VkClientProperty {
+        return VkClientProperty()
     }
 
     @Bean("vkResource")
     @ConfigurationProperties("vk.resource")
     @ConditionalOnProperty(prefix = "vk.resource", name = ["userInfoUri"])
-    fun vkResource(): ResourceServerProperties {
-        return ResourceServerProperties()
+    fun vkResource(): VkResourceProperties {
+        return VkResourceProperties()
     }
 
     @Bean("vk")

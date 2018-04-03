@@ -1,13 +1,14 @@
 package com.seko0716.springbootstartersecurityoauthvkgoogle.auth
 
 import com.seko0716.springbootstartersecurityoauthvkgoogle.auth.extractors.GooglePrincipalExtractor
+import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.GoogleClientProperty
 import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.GoogleProperties
+import com.seko0716.springbootstartersecurityoauthvkgoogle.configurations.properties.GoogleResourceProperties
 import com.seko0716.springbootstartersecurityoauthvkgoogle.repository.IUserStorage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
-import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -16,7 +17,6 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.security.oauth2.client.OAuth2ClientContext
 import org.springframework.security.oauth2.client.OAuth2RestTemplate
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter
-import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails
 
 @Configuration
 @ComponentScan
@@ -28,9 +28,9 @@ class GoogleConfiguration {
     private lateinit var oauth2ClientContext: OAuth2ClientContext
 
     @Bean
-    @ConditionalOnBean(name = ["googleClient", "googleResource", "authoritiesExtractor"])
-    fun googleFilter(googleResource: ResourceServerProperties,
-                     googleClient: AuthorizationCodeResourceDetails,
+    @ConditionalOnBean(GoogleClientProperty::class, GoogleResourceProperties::class)
+    fun googleFilter(googleResource: GoogleResourceProperties,
+                     googleClient: GoogleClientProperty,
                      authoritiesExtractor: AuthoritiesExtractor): OAuth2ClientAuthenticationProcessingFilter {
         val googleFilter = OAuth2ClientAuthenticationProcessingFilter(google().loginUrl)
         val googleTemplate = OAuth2RestTemplate(googleClient, oauth2ClientContext)
@@ -49,15 +49,15 @@ class GoogleConfiguration {
         "clientId", "clientSecret", "accessTokenUri", "userAuthorizationUri",
         "clientAuthenticationScheme", "scope"
     ])
-    fun googleClient(): AuthorizationCodeResourceDetails {
-        return AuthorizationCodeResourceDetails()
+    fun googleClient(): GoogleClientProperty {
+        return GoogleClientProperty()
     }
 
     @Bean("googleResource")
     @ConfigurationProperties("google.resource")
     @ConditionalOnProperty(prefix = "google.resource", name = ["userInfoUri"])
-    fun googleResource(): ResourceServerProperties {
-        return ResourceServerProperties()
+    fun googleResource(): GoogleResourceProperties {
+        return GoogleResourceProperties()
     }
 
     @Bean("google")
