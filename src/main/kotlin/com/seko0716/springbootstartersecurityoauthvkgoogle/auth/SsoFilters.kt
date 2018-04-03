@@ -86,21 +86,24 @@ class SsoFilters {
 
     @Bean
     @ConfigurationProperties("google.client")
-    @ConditionalOnProperty("google.client")
+    @ConditionalOnProperty(prefix = "google.client", name = [
+        "clientId", "clientSecret", "accessTokenUri", "userAuthorizationUri",
+        "clientAuthenticationScheme", "scope"
+    ])
     fun googleClient(): AuthorizationCodeResourceDetails {
         return AuthorizationCodeResourceDetails()
     }
 
     @Bean
     @ConfigurationProperties("google.resource")
-    @ConditionalOnProperty("google.resource")
+    @ConditionalOnProperty(prefix = "google.resource", name = ["userInfoUri"])
     fun googleResource(): ResourceServerProperties {
         return ResourceServerProperties()
     }
 
     @Bean
     @ConfigurationProperties("google")
-    @ConditionalOnProperty("google")
+    @ConditionalOnProperty(prefix = "google", name = ["loginUrl"])
     fun google(): GoogleProperties {
         return GoogleProperties()
     }
@@ -108,21 +111,24 @@ class SsoFilters {
 
     @Bean
     @ConfigurationProperties("vk.client")
-    @ConditionalOnProperty("vk.client")
+    @ConditionalOnProperty(prefix = "vk.client", name = [
+        "clientId", "clientSecret", "accessTokenUri", "userAuthorizationUri",
+        "authenticationScheme", "clientAuthenticationScheme", "scope"
+    ])
     fun vkClient(): AuthorizationCodeResourceDetails {
         return AuthorizationCodeResourceDetails()
     }
 
     @Bean
     @ConfigurationProperties("vk.resource")
-    @ConditionalOnProperty("vk.resource")
+    @ConditionalOnProperty(prefix = "vk.resource", name = ["userInfoUri"])
     fun vkResource(): ResourceServerProperties {
         return ResourceServerProperties()
     }
 
     @Bean
     @ConfigurationProperties("vk")
-    @ConditionalOnProperty("vk")
+    @ConditionalOnProperty(prefix = "vk", name = ["loginUrl"])
     fun vk(): VkProperties {
         return VkProperties()
     }
