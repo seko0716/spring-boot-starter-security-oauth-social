@@ -29,3 +29,7 @@ class SpringSecurityOauth2VkGoogleAutoConfiguration {
     }
 
 }
+
+fun main(args: Array<String>) {
+
+}
