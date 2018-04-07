@@ -177,5 +177,4 @@ class GooglePrincipalExtractor(var userStorage: IUserStorage) : PrincipalExtract
 ## Планы развития ##
 
 * сделать версию для Spring Boot 2
-* сделать демо 
 
