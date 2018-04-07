@@ -12,6 +12,8 @@ data class User(@Id var id: ObjectId = ObjectId(),
                 var socialAccountId: String,
                 var login: String,
                 var email: String? = null,
+                var firstName: String? = null,
+                var lastName: String? = null,
                 var enabled: Boolean = true,
                 @ManyToMany var roles: List<Role> = ArrayList(),
                 val authServiceType: String = "BASE")

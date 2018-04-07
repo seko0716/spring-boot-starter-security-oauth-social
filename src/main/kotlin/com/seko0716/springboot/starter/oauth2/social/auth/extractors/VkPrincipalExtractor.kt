@@ -18,6 +18,8 @@ class VkPrincipalExtractor(var userStorage: IUserStorage, var vk: VkProperties, 
             user = User(login = result[vk.loginField]!!,
                     socialAccountId = socialAccountId,
                     email = result[vk.emailField],
+                    firstName = result[vk.firstNameField],
+                    lastName = result[vk.lastNameField],
                     roles = vk.defaultRoles.map { Role(name = it) },
                     authServiceType = authServiceType)
             return userStorage.save(user)

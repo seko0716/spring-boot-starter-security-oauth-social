@@ -18,6 +18,8 @@ class GooglePrincipalExtractor(var userStorage: IUserStorage, var google: Google
             user = User(login = result[google.loginField]!!,
                     socialAccountId = socialAccountId,
                     email = result[google.emailField],
+                    firstName = result[google.firstNameField],
+                    lastName = result[google.lastNameField],
                     roles = google.defaultRoles.map { Role(name = it) },
                     authServiceType = authServiceType)
             return userStorage.save(user)

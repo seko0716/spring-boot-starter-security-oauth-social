@@ -47,6 +47,20 @@
       "defaultValue": "email"
     },
     {
+      "name": "google.firstNameField",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperty",
+      "defaultValue": "given_name"
+    },
+    {
+      "name": "google.lastNameField",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperty",
+      "defaultValue": "family_name"
+    },
+    {
       "name": "google.emailField",
       "type": "java.lang.String",
       "description": "",
@@ -129,6 +143,20 @@
       "description": "",
       "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperty",
       "defaultValue": "first_name"
+    },
+    {
+      "name": "vk.firstNameField",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperty",
+      "defaultValue": "first_name"
+    },
+    {
+      "name": "vk.lastNameField",
+      "type": "java.lang.String",
+      "description": "",
+      "sourceType": "com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperty",
+      "defaultValue": "last_name"
     },
     {
       "name": "vk.emailField",
