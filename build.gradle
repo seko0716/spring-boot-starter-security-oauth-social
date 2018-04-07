@@ -1,7 +1,7 @@
 buildscript {
     ext {
         kotlinVersion = '1.2.20'
-        springBootVersion = '1.5.10.RELEASE'
+		springBootVersion = '2.0.1.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -19,6 +19,7 @@ apply plugin: 'kotlin-spring'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: "kotlin-noarg"
+apply plugin: 'io.spring.dependency-management'
 
 noArg {
     annotation("com.seko0716.springboot.starter.oauth2.social.infrastructure.annotations.NoArgs")
@@ -44,13 +45,15 @@ repositories {
     mavenCentral()
 }
 
-bootRepackage {
-    enabled = false
-}
+//bootRepackage {
+//    enabled = false
+//}
 
 dependencies {
     compile('javax.servlet:javax.servlet-api:3.0.1')
-    compile('org.springframework.security.oauth:spring-security-oauth2')
+    compile('org.springframework.security.oauth:spring-security-oauth2:2.2.1.RELEASE')
+    compile('org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.0.0.RELEASE')
+
     compile('org.springframework.boot:spring-boot-autoconfigure')
     compile('org.springframework.data:spring-data-commons')
     compile('org.mongodb:bson:3.5.0')
