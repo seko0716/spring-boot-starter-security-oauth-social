@@ -1,4 +1,4 @@
-package com.seko0716.springboot.starter.oauth2.social
+package com.seko0716.springboot.starter.oauth2.social.context
 
 import com.seko0716.springboot.starter.oauth2.social.security.Oauth2WebSecurityConfigurerAdapter
 import org.junit.Assert
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
 
-@SpringBootTest
+@SpringBootTest(classes = [Stopper::class])
 @RunWith(SpringRunner::class)
 class TestContext {
 
