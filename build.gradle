@@ -1,7 +1,7 @@
 buildscript {
     ext {
-        kotlinVersion = '1.2.20'
-		springBootVersion = '2.0.1.RELEASE'
+        kotlinVersion = '1.2.21'
+        springBootVersion = '2.0.1.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -28,6 +28,7 @@ noArg {
 group = 'com.seko0716'
 version = '0.1.8-SNAPSHOT'
 sourceCompatibility = 1.8
+
 compileKotlin {
     kotlinOptions {
         freeCompilerArgs = ["-Xjsr305=strict"]
@@ -45,9 +46,6 @@ repositories {
     mavenCentral()
 }
 
-//bootRepackage {
-//    enabled = false
-//}
 
 dependencies {
     compile('javax.servlet:javax.servlet-api:3.0.1')
@@ -70,7 +68,6 @@ dependencies {
 //    test
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.boot:spring-boot-starter-data-jpa')
-//    testCompile('org.springframework.boot:spring-boot-starter-data-mongodb')
     testCompile('com.h2database:h2')
     testCompile('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
 }
