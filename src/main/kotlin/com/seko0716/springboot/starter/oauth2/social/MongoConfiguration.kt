@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct
 @Configuration
 class MongoConfiguration {
     @PostConstruct
-    fun init(): Unit {
+    fun init() {
         println("MONGO")
     }
 }

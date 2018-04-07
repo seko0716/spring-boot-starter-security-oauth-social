@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct
 @Configuration
 class JpaConfiguration {
     @PostConstruct
-    fun init(): Unit {
+    fun init() {
         println("JPA")
     }
 }
