@@ -1,5 +1,6 @@
 package com.seko0716.springboot.starter.oauth2.social.mongorepository
 
+import com.seko0716.springboot.starter.oauth2.social.auth.extractors.GooglePrincipalExtractor
 import com.seko0716.springboot.starter.oauth2.social.domains.User
 import com.seko0716.springboot.starter.oauth2.social.repository.IUserStorage
 import org.junit.Assert
@@ -31,5 +32,13 @@ class MongoTestObjectId {
 
         val foundedUser = userStorage.findOneBySocialAccountId("234")
         Assert.assertEquals(user, foundedUser)
+    }
+
+    @Autowired
+    lateinit var googlePrincipalExtractor: GooglePrincipalExtractor
+
+    @Test
+    fun testOverrideBean() {
+        Assert.assertTrue(googlePrincipalExtractor.userStorage is UserStorageMongo)
     }
 }

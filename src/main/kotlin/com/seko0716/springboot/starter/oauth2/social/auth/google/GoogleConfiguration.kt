@@ -31,13 +31,9 @@ import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticat
     "client.clientId", "client.clientSecret", "client.accessTokenUri", "client.userAuthorizationUri",
     "client.clientAuthenticationScheme", "client.scope", "resource.userInfoUri"
 ])
-class GoogleConfiguration {
-    @Autowired
-    private lateinit var userStorage: IUserStorage
-    @Autowired
-    private lateinit var oauth2ClientContext: OAuth2ClientContext
-    @Autowired
-    lateinit var oAuth2UserService: OAuth2UserService
+class GoogleConfiguration @Autowired constructor(var userStorage: IUserStorage,
+                                                 var oauth2ClientContext: OAuth2ClientContext,
+                                                 var oAuth2UserService: OAuth2UserService) {
 
     @Bean
     fun googleFilter(googleResource: GoogleResourceProperties,

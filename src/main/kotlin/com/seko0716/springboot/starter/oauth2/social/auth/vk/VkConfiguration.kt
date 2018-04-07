@@ -33,18 +33,13 @@ import java.util.*
     VkProperties::class,
     VkResourceProperties::class
 ])
-
 @ConditionalOnProperty(prefix = "vk", name = [
     "client.clientId", "client.clientSecret", "client.accessTokenUri", "client.userAuthorizationUri",
     "client.authenticationScheme", "client.clientAuthenticationScheme", "client.scope", "resource.userInfoUri"
 ])
-class VkConfiguration {
-    @Autowired
-    private lateinit var userStorage: IUserStorage
-    @Autowired
-    private lateinit var oauth2ClientContext: OAuth2ClientContext
-    @Autowired
-    lateinit var oAuth2UserService: OAuth2UserService
+class VkConfiguration @Autowired constructor(var userStorage: IUserStorage,
+                                             var oauth2ClientContext: OAuth2ClientContext,
+                                             var oAuth2UserService: OAuth2UserService) {
 
     @Bean
     fun vkFilter(vkResource: VkResourceProperties,
