@@ -61,6 +61,9 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     compileOnly('org.springframework.boot:spring-boot-configuration-processor')
 
+    compileOnly('org.springframework.boot:spring-boot-starter-data-jpa')
+    compileOnly('org.springframework.boot:spring-boot-starter-data-mongodb')
+
 //    test
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.boot:spring-boot-starter-data-jpa')
