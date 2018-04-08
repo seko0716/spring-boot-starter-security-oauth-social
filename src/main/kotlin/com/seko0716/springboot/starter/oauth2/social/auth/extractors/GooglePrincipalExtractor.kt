@@ -2,7 +2,7 @@ package com.seko0716.springboot.starter.oauth2.social.auth.extractors
 
 import com.seko0716.springboot.starter.oauth2.social.domains.Role
 import com.seko0716.springboot.starter.oauth2.social.domains.User
-import com.seko0716.springboot.starter.oauth2.social.infrastructure.extension.ifNull
+import com.seko0716.springboot.starter.oauth2.social.infrastructure.extension.createIfNull
 import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperties
 import com.seko0716.springboot.starter.oauth2.social.repository.IUserStorage
 import org.slf4j.Logger
@@ -20,7 +20,7 @@ class GooglePrincipalExtractor(var userStorage: IUserStorage, var google: Google
         val socialAccountId = result[google.idField]
         val user = userStorage
                 .findOneBySocialAccountId(socialAccountId!!)
-                .ifNull {
+                .createIfNull {
                     log.debug("user with social account id {} not found", socialAccountId)
                     var userT = User(login = result[google.loginField]!!,
                             socialAccountId = socialAccountId,
