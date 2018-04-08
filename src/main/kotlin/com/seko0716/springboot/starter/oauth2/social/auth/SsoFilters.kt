@@ -17,6 +17,4 @@ class SsoFilters {
         registration.order = -100
         return registration
     }
-
-
 }
