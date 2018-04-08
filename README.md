@@ -174,8 +174,3 @@ class GooglePrincipalExtractor(var userStorage: IUserStorage) : PrincipalExtract
 
 Наследование от **User** запрещено, класс помечен как финальный.
 
-## Планы развития ##
-
-* отрефакторить кода для spring boot 2
-* добавить логирование вместо sout
-
