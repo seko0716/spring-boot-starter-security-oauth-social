@@ -27,5 +27,4 @@ class SpringSecurityOauth2VkGoogleAutoConfiguration {
     fun oAuth2UserService(): OAuth2UserService {
         return OAuth2UserService()
     }
-
 }

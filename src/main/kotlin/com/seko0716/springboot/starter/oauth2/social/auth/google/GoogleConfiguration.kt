@@ -7,6 +7,8 @@ import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.G
 import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperties
 import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleResourceProperties
 import com.seko0716.springboot.starter.oauth2.social.repository.IUserStorage
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
@@ -34,6 +36,7 @@ import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticat
 class GoogleConfiguration @Autowired constructor(var userStorage: IUserStorage,
                                                  var oauth2ClientContext: OAuth2ClientContext,
                                                  var oAuth2UserService: OAuth2UserService) {
+    private val log: Logger = LoggerFactory.getLogger(this::class.java)
 
     @Bean
     fun googleFilter(googleResource: GoogleResourceProperties,
@@ -46,6 +49,7 @@ class GoogleConfiguration @Autowired constructor(var userStorage: IUserStorage,
         tokenServices.setAuthoritiesExtractor(googleAuthoritiesExtractor())
         tokenServices.setPrincipalExtractor(googlePrincipalExtractor())
         googleFilter.setTokenServices(tokenServices)
+        log.trace("init google oauth2 filter")
         return googleFilter
     }
 

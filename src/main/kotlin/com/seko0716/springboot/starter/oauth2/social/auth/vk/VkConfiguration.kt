@@ -7,6 +7,8 @@ import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.V
 import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkProperties
 import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.VkResourceProperties
 import com.seko0716.springboot.starter.oauth2.social.repository.IUserStorage
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor
@@ -40,7 +42,8 @@ import java.util.*
 class VkConfiguration @Autowired constructor(var userStorage: IUserStorage,
                                              var oauth2ClientContext: OAuth2ClientContext,
                                              var oAuth2UserService: OAuth2UserService) {
-
+    private val log: Logger = LoggerFactory.getLogger(this::class.java)
+    
     @Bean
     fun vkFilter(vkResource: VkResourceProperties,
                  vkClient: VkClientProperty): OAuth2ClientAuthenticationProcessingFilter {
@@ -56,6 +59,7 @@ class VkConfiguration @Autowired constructor(var userStorage: IUserStorage,
         tokenServices.setAuthoritiesExtractor(vkAuthoritiesExtractor())
         tokenServices.setPrincipalExtractor(vkPrincipalExtractor())
         vkFilter.setTokenServices(tokenServices)
+        log.trace("init google oauth2 filter")
         return vkFilter
     }
 
