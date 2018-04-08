@@ -2,6 +2,7 @@ package com.seko0716.springboot.starter.oauth2.social.auth.extractors
 
 import com.seko0716.springboot.starter.oauth2.social.domains.Role
 import com.seko0716.springboot.starter.oauth2.social.domains.User
+import com.seko0716.springboot.starter.oauth2.social.infrastructure.extension.ifNull
 import com.seko0716.springboot.starter.oauth2.social.infrastructure.properties.GoogleProperties
 import com.seko0716.springboot.starter.oauth2.social.repository.IUserStorage
 import org.slf4j.Logger
@@ -17,20 +18,21 @@ class GooglePrincipalExtractor(var userStorage: IUserStorage, var google: Google
         map["_authServiceType"] = authServiceType
         val result = OAuth2UserService.getDetails(map)
         val socialAccountId = result[google.idField]
-        var user = userStorage.findOneBySocialAccountId(socialAccountId!!)
-        if (user == null) {
-            log.debug("user with social account id {} not found", socialAccountId)
-            user = User(login = result[google.loginField]!!,
-                    socialAccountId = socialAccountId,
-                    email = result[google.emailField],
-                    firstName = result[google.firstNameField],
-                    lastName = result[google.lastNameField],
-                    roles = google.defaultRoles.map { Role(name = it) },
-                    authServiceType = authServiceType)
-            user = userStorage.save(user)
-            log.debug("user be created {}", user)
-            return user
-        }
+        val user = userStorage
+                .findOneBySocialAccountId(socialAccountId!!)
+                .ifNull {
+                    log.debug("user with social account id {} not found", socialAccountId)
+                    var userT = User(login = result[google.loginField]!!,
+                            socialAccountId = socialAccountId,
+                            email = result[google.emailField],
+                            firstName = result[google.firstNameField],
+                            lastName = result[google.lastNameField],
+                            roles = google.defaultRoles.map { Role(name = it) },
+                            authServiceType = authServiceType)
+                    userT = userStorage.save(userT)
+                    log.debug("user be created {}", userT)
+                    return userT
+                }
         log.trace("user with social account id {} exist {}", socialAccountId, user)
         return user
     }
