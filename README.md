@@ -50,7 +50,7 @@ betta.
 </dependency>
 ```
 
-Gradle
+### Gradle ###
 
 #### Подключить плагин ####
 
